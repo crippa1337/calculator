@@ -1,0 +1,60 @@
+:root {
+    --fr-clr: #ebebeb;
+    --bg-clr: white;
+    --bg-clr-alt: rgb(215, 215, 215);
+    --gradient: linear-gradient(90deg, #ee6352, purple, #ee6352);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: basic-sans, sans-serif;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    gap: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: var(--gradient);
+    animation: background-gradient 5s infinite alternate;
+    background-size: 400%;
+}
+
+.background {
+    outline: var(--fr-clr) 0.1rem solid;
+    width: 30%;
+    height: 60vh;
+    background: var(--bg-clr);
+}
+
+.title {
+    background: var(--bg-clr);
+    width: 30%;
+    height: 10vh;
+    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 5rem;
+
+    /* Gradient text https://www.youtube.com/watch?v=f3mwKLXpOLk*/
+    background-image: var(--gradient);
+    background-clip: text;
+    color: transparent;
+}
+
+.screen {
+    outline: var(--fr-clr) 0.1rem solid;
+    margin: 1rem;
+    width: calc(100%-2rem);
+    height: 10vh;
+    background: var(--bg-clr-alt)
+}
+
+@keyframes background-gradient {
+    0% {background-position: left;}
+    100% {background-position: right;}
+}
+
