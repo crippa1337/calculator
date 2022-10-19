@@ -29,10 +29,15 @@
     background: var(--bg-clr);
 }
 
-.title {
+.title-bg {
     background: var(--bg-clr);
     width: 30%;
     height: 10vh;
+    border-radius: 1.5rem;
+}
+
+.title {
+    background: var(--bg-clr);
     text-align: center;
     text-transform: uppercase;
     font-style: italic;
@@ -40,6 +45,7 @@
     font-size: 5rem;
 
     /* Gradient text https://www.youtube.com/watch?v=f3mwKLXpOLk*/
+    background: var(--bg-clr);
     background-image: var(--gradient);
     background-clip: text;
     color: transparent;
