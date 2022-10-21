@@ -1,4 +1,5 @@
 :root {
+    box-sizing: border-box;
     --fr-clr: #ebebeb;
     --bg-clr: white;
     --bg-clr-alt: rgb(215, 215, 215);
@@ -64,13 +65,52 @@
 
 .calc {
     display: grid;
+    height: 100%;
+    grid-template-rows: 10vh 1fr;
+    gap: 2rem;
 }
 
 .screen {
     outline: var(--fr-clr) 0.1rem solid;
     margin: 1rem;
     width: calc(100%-2rem);
-    height: 10vh;
-    background: var(--bg-clr-alt)
+    height: 100%;
+    background: var(--bg-clr-alt);
+
+    font-family: monospace;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.button-grid {
+    display: grid;
+    margin: 1rem;
+    grid-template-rows: repeat(5. 1fr);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.button {
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 900;
+
+    /* Text Gradient */
+    animation: background-gradient 15s 2 alternate;
+    background-size: 400%;
+    background-image: var(--gradient);
+    background-clip: text;
+    color: transparent;
+    /* Chromium Support */ 
+    -webkit-background-clip: text;
+
+    transition: 0.03s ease-in;
+}
+
+.button:hover {
+    filter: brightness(3);
+}
+
+.button:active {
+    font-size: 1rem;
 }
 

@@ -1,14 +1,59 @@
+const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
 let elemTitle = document.getElementById("title");
-console.log(elemTitle);
+let elemScreen = document.getElementById("screen");
+let displayText = ""
 
-//every 10 seconds there is a 30% chance that the letter C in the title
-//will be replaced with a k and vice versa
-setInterval(function() {
-    if (Math.random() < 0.3) {
-        elemTitle = elemTitle.replace("C", "k");
-        elemTitle = elemTitle.replace("c", "k");
-        elemTitle = elemTitle.replace("K", "c");
-        elemTitle = elemTitle.replace("k", "c");
-        document.getElementById("title").innerHTML = elemTitle;
-    }
+setInterval(function () {
+    random = Math.floor(Math.random() * titles.length);
+    elemTitle.innerText = titles[random];
+
 }, 10000);
+
+function buttonClick(input) {
+    // If displayText is ERR and another input is detected
+    // it clears displayText and then adds the input onto the now empty string
+    if (displayText == "ERR") {
+        displayText = "";
+        displayText += input;
+        updateDisplay();
+    }
+
+    else {
+        displayText += input;
+        updateDisplay();
+    }
+}
+
+function functionClick(operator) {
+    if (operator == 'AC') {
+        displayText = "";
+        updateDisplay();
+    }
+
+    else if (operator == 'DEL') {
+        if (displayText == "ERR") {
+            displayText = displayText.slice(0, -3);
+            updateDisplay();
+        }
+
+        displayText = displayText.slice(0, -1);
+        updateDisplay();
+    }
+
+    else if (operator == 'ANS') {
+        try {
+            displayText = displayText.replaceAll("^", "**")
+            displayText = eval(displayText);
+            updateDisplay();
+        }
+
+        catch {
+            displayText = "ERR";
+            updateDisplay();
+        }
+    }
+}
+
+function updateDisplay() {
+    elemScreen.innerText = displayText;
+}
