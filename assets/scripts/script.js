@@ -176,10 +176,7 @@ function handle_collision() {
 }
 
 function frame() {
-    console.log("bouncing232");
-    console.log(main.style.top);
-    console.log(main.style.left);
     handle_collision();
-    main.style.top = main.offsetTop + y_incr;
-    main.style.left = main.offsetLeft + x_incr;
+    main.style.top = `${main.offsetTop + y_incr}px`;
+    main.style.left = `${main.offsetLeft + x_incr}px`;
 }
