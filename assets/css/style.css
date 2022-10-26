@@ -1,9 +1,9 @@
 :root {
-    box-sizing: border-box;
     --fr-clr: #ebebeb;
     --bg-clr: white;
     --bg-clr-alt: rgb(215, 215, 215);
     --gradient: linear-gradient(90deg, #ee6352, purple, #ee6352);
+    --font-m: 2rem;
 }
 
 * {
@@ -54,13 +54,18 @@
     background-image: var(--gradient);
     background-clip: text;
     color: transparent;
-    /* Chromium Support */ 
+    /* Chromium Support */
     -webkit-background-clip: text;
 }
 
 @keyframes background-gradient {
-    0% {background-position: left;}
-    100% {background-position: right;}
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
 }
 
 .calc {
@@ -71,15 +76,25 @@
 }
 
 .screen {
+    display: flex;
+    flex-direction: column;
     outline: var(--fr-clr) 0.1rem solid;
     margin: 1rem;
     width: calc(100%-2rem);
     height: 100%;
     background: var(--bg-clr-alt);
+    overflow: scroll;
+}
 
+.screen-text {
     font-family: monospace;
-    font-size: 2rem;
-    text-align: center;
+    font-size: var(--font-m);
+    text-align: left;
+}
+
+#old-screen {
+    filter: opacity(0.4);
+    font-size: calc(var(--font-m) - 0.8rem);
 }
 
 .button-grid {
@@ -87,30 +102,23 @@
     margin: 1rem;
     grid-template-rows: repeat(5. 1fr);
     grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
 }
 
 .button {
     border: none;
     font-size: 1.2rem;
     font-weight: 900;
-
-    /* Text Gradient */
-    animation: background-gradient 15s 2 alternate;
-    background-size: 400%;
-    background-image: var(--gradient);
-    background-clip: text;
-    color: transparent;
-    /* Chromium Support */ 
-    -webkit-background-clip: text;
+    outline: 1px solid black;
 
     transition: 0.03s ease-in;
 }
 
 .button:hover {
-    filter: brightness(3);
+    filter: brightness(1);
+    background: rgba(128, 128, 128, 0.0053);
 }
 
 .button:active {
     font-size: 1rem;
 }
-
