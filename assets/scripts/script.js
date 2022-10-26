@@ -69,6 +69,10 @@ function functionClick(operator) {
                 displayText += oldText;
             }
 
+            else if (displayText == "") {
+                displayText = "0";
+            }
+
             oldText = displayText;
             displayText = displayText.replaceAll("^", "**")
             displayText = eval(displayText);
