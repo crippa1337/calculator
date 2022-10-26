@@ -7,8 +7,11 @@ let oldText = "";
 
 // for the dvd bounce
 let main = document.getElementById("main");
-let x_incr = 1;
-let y_incr = 1;
+let x_incr = 2;
+let y_incr = 2;
+let isBouncing = false;
+let dvdCounterText = document.getElementById("dvd-counter")
+let dvdStopCount = 0;
 
 const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
 
@@ -94,7 +97,15 @@ function functionClick(operator) {
     }
 
     else if (operator == "DVD") {
-        dvdInit();
+        if (isBouncing == true) {
+            isBouncing = false;
+            dvdStopCount += 1;
+            dvdCounterText.innerText = "DVD Stop Count: " + dvdStopCount;
+            dvdCounterText.style.display = "block";
+        }
+        else {
+            dvdInit();
+        }
     }
 }
 
@@ -156,7 +167,7 @@ function dragElement(element) {
 
 function dvdInit() {
     setInterval(frame, 5);
-    console.log("bouncing");
+    isBouncing = true;
 }
 
 function handle_collision() {
@@ -176,7 +187,9 @@ function handle_collision() {
 }
 
 function frame() {
-    handle_collision();
-    main.style.top = `${main.offsetTop + y_incr}px`;
-    main.style.left = `${main.offsetLeft + x_incr}px`;
+    if (isBouncing == true) {
+        handle_collision();
+        main.style.top = `${main.offsetTop + y_incr}px`;
+        main.style.left = `${main.offsetLeft + x_incr}px`;
+    }
 }
