@@ -10,6 +10,11 @@
     padding: 0;
     margin: 0;
     font-family: basic-sans, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
 }
 
 .container {
@@ -26,11 +31,23 @@
 
 .main {
     display: flex;
+    position: absolute;
     flex-direction: column;
     outline: var(--fr-clr) 0.1rem solid;
     width: 30%;
     height: 60vh;
     background: var(--bg-clr);
+}
+
+#mainheader {
+    height: 1rem;
+    width: 100%;
+    text-align: center;
+    background: var(--bg-clr);
+}
+
+#mainheader:hover {
+    cursor: pointer;
 }
 
 .title-bg {
@@ -78,12 +95,11 @@
 .screen {
     display: flex;
     flex-direction: column;
-    outline: var(--fr-clr) 0.1rem solid;
     margin: 1rem;
     width: calc(100%-2rem);
     height: 100%;
     background: var(--bg-clr-alt);
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .screen-text {
@@ -106,6 +122,7 @@
 }
 
 .button {
+    font-family: monospace;
     border: none;
     font-size: 1.2rem;
     font-weight: 900;
@@ -121,4 +138,13 @@
 
 .button:active {
     font-size: 1rem;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
