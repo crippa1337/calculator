@@ -50,17 +50,6 @@ body {
     cursor: pointer;
 }
 
-#dvd-counter {
-    display: none;
-    top: 0;
-    left: 0;
-    position: absolute;
-    margin: 2rem;
-    color: var(--fr-clr);
-    font-size: var(--font-m);
-    font-family: monospace;
-}
-
 .title-bg {
     background: var(--bg-clr);
     width: 100%;
