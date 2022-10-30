@@ -1,3 +1,5 @@
+const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
+
 let elemTitle = document.getElementById("title");
 let elemScreenText = document.getElementById("screen");
 let elemOldText = document.getElementById("old-screen");
@@ -13,8 +15,6 @@ let isBouncing = false;
 let dvdCounterText = document.getElementById("dvd-counter")
 let dvdStopCount = 0;
 let bouncer;
-
-const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
 
 setInterval(function () {
     random = Math.floor(Math.random() * titles.length);
@@ -32,6 +32,17 @@ setInterval(function () {
     updateDisplay();
 }, 500);
 
+function removeUnderScore() {
+    if (displayText.endsWith("_")) {
+        displayText = displayText.slice(0, -1);
+    }
+    updateDisplay();
+}
+
+function updateDisplay() {
+    elemScreenText.innerText = displayText;
+    elemOldText.innerText = oldText;
+}
 
 function buttonClick(input) {
     // If displayText is ERR and another input is detected
@@ -106,18 +117,6 @@ function functionClick(operator) {
             dvdInit();
         }
     }
-}
-
-function updateDisplay() {
-    elemScreenText.innerText = displayText;
-    elemOldText.innerText = oldText;
-}
-
-function removeUnderScore() {
-    if (displayText.endsWith("_")) {
-        displayText = displayText.slice(0, -1);
-    }
-    updateDisplay();
 }
 
 //Make the DIV element draggagle:
