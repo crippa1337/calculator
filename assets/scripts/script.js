@@ -1,21 +1,10 @@
-const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
-
 let elemTitle = document.getElementById("title");
 let elemScreenText = document.getElementById("screen");
 let elemOldText = document.getElementById("old-screen");
-
 let displayText = "";
 let oldText = "";
 
-// for dvd bounce
-let main = document.getElementById("main");
-let x_incr = 1;
-let y_incr = 1;
-let isBouncing = false;
-let dvdCounterText = document.getElementById("dvd-counter")
-let dvdStopCount = 0;
-let bouncer;
-
+const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
 setInterval(function () {
     random = Math.floor(Math.random() * titles.length);
     elemTitle.innerText = titles[random];
@@ -46,7 +35,7 @@ function updateDisplay() {
 
 function buttonClick(input) {
     // If displayText is ERR and another input is detected
-    // it clears displayText and then adds the input onto the now empty string
+    // clear displayText and then add the input onto the now empty string
     removeUnderScore();
     if (displayText == "ERR") {
         displayText = "";
@@ -162,9 +151,16 @@ function dragElement(element) {
     }
 }
 
+let main = document.getElementById("main");
+let x_incr = 1;
+let y_incr = 1;
+let isBouncing = false;
+let dvdCounterText = document.getElementById("dvd-counter")
+let dvdStopCount = 0;
+let bouncer;
 // dvdInit() is called when the DVD button is pressed
 function dvdInit() {
-    // calls frame() every 5ms
+    // assigns an interval to bouncer that calls frame() every 5ms
     bouncer = setInterval(frame, 5);
     // sets isBouncing to true so that the dvd button can be used to stop the bouncing
     isBouncing = true;
