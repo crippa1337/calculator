@@ -1,28 +1,27 @@
-let elemTitle = document.getElementById("title");
-let elemScreenText = document.getElementById("screen");
-let elemOldText = document.getElementById("old-screen");
-let displayText = "";
-let oldText = "";
+const elemTitle = document.getElementById('title');
+const elemScreenText = document.getElementById('screen');
+const elemOldText = document.getElementById('old-screen');
+let displayText = '';
+let oldText = '';
 
-const titles = ["CALCULATOR", "KALKULATOR", "KALCULATOR", "CALKULATOR"]
-setInterval(function () {
+const titles = ['CALCULATOR', 'KALKULATOR', 'KALCULATOR', 'CALKULATOR'];
+setInterval(() => {
     random = Math.floor(Math.random() * titles.length);
     elemTitle.innerText = titles[random];
-
 }, 10000);
 
 // adds a blinking underscore to the end of displayText
-setInterval(function () {
-    if (displayText.endsWith("_")) {
+setInterval(() => {
+    if (displayText.endsWith('_')) {
         displayText = displayText.slice(0, -1);
     } else {
-        displayText += "_";
+        displayText += '_';
     }
     updateDisplay();
 }, 500);
 
 function removeUnderScore() {
-    if (displayText.endsWith("_")) {
+    if (displayText.endsWith('_')) {
         displayText = displayText.slice(0, -1);
     }
     updateDisplay();
@@ -37,84 +36,77 @@ function buttonClick(input) {
     // If displayText is ERR and another input is detected
     // clear displayText and then add the input onto the now empty string
     removeUnderScore();
-    if (displayText == "ERR") {
-        displayText = "";
+    if (displayText == 'ERR') {
+        displayText = '';
         displayText += input;
         updateDisplay();
+        return;
     }
-
-    else {
-        displayText += input;
-        updateDisplay();
-    }
+    displayText += input;
+    updateDisplay();
 }
 
 function functionClick(operator) {
+    if (displayText == 'ERR') {
+        displayText = '';
+        updateDisplay();
+        return;
+    }
+    removeUnderScore();
+
     if (operator == 'AC') {
-        // doesn't update oldText if displayText is ERR
-        if (displayText == "ERR") {
-            displayText = "";
-            updateDisplay();
-        }
-        removeUnderScore();
         oldText = displayText;
-        displayText = "";
-        updateDisplay();
+        displayText = '';
+        return;
     }
 
-    else if (operator == 'DEL') {
-        removeUnderScore();
-        if (displayText == "ERR") {
-            displayText = displayText.slice(0, -3);
-            updateDisplay();
-        }
-
+    if (operator == 'DEL') {
         displayText = displayText.slice(0, -1);
-        updateDisplay();
+        return;
     }
 
-    else if (operator == 'ANS') {
+    if (operator == 'ANS') {
         try {
-            removeUnderScore();
-            if (displayText == "" && oldText) {
+            if (displayText == '' && oldText) {
                 displayText += oldText;
+                return;
             }
 
-            else if (displayText == "") {
-                displayText = "0";
+            if (displayText == '') {
+                displayText = '0';
             }
 
             oldText = displayText;
-            displayText = displayText.replaceAll("^", "**")
+            displayText = displayText.replaceAll('^', '**');
             displayText = eval(displayText);
-            displayText += "";
-            updateDisplay();
+            displayText = displayText.toString();
+        } catch {
+            displayText = 'ERR';
         }
-
-        catch {
-            displayText = "ERR";
-            updateDisplay();
-        }
+        return;
     }
 
-    else if (operator == "DVD") {
-        if (isBouncing == true) {
-            isBouncing = false;
-            clearInterval(bouncer);
-        }
-        else {
-            dvdInit();
-        }
+    // In this case the only possible operator is DVD
+    if (isBouncing == true) {
+        isBouncing = false;
+        clearInterval(bouncer);
+        return;
     }
+
+    dvdInit();
+    updateDisplay();
 }
 
 //Make the DIV element draggagle:
-dragElement(document.getElementById("main"));
+dragElement(document.getElementById('main'));
 function dragElement(element) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(element.id + "header")) {
+    let pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+    if (document.getElementById(element.id + 'header')) {
         // if present, the header is where you move the DIV from
-        document.getElementById(element.id + "header").onmousedown = dragMouseDown;
+        document.getElementById(element.id + 'header').onmousedown = dragMouseDown;
     } else {
         // otherwise, move the DIV from anywhere inside the DIV
         element.onmousedown = dragMouseDown;
@@ -140,8 +132,8 @@ function dragElement(element) {
         pos3 = e.clientX;
         pos4 = e.clientY;
         // set the element's new position:
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
+        element.style.top = element.offsetTop - pos2 + 'px';
+        element.style.left = element.offsetLeft - pos1 + 'px';
     }
 
     function closeDragElement() {
@@ -151,11 +143,11 @@ function dragElement(element) {
     }
 }
 
-let main = document.getElementById("main");
+const main = document.getElementById('main');
 let x_incr = 1;
 let y_incr = 1;
 let isBouncing = false;
-let dvdCounterText = document.getElementById("dvd-counter")
+const dvdCounterText = document.getElementById('dvd-counter');
 let dvdStopCount = 0;
 let bouncer;
 // dvdInit() is called when the DVD button is pressed
