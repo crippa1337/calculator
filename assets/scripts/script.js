@@ -47,53 +47,54 @@ function buttonClick(input) {
 }
 
 function functionClick(operator) {
-    if (displayText == 'ERR') {
-        displayText = '';
-        updateDisplay();
-        return;
-    }
     removeUnderScore();
-
-    if (operator == 'AC') {
-        oldText = displayText;
-        displayText = '';
-        return;
-    }
-
-    if (operator == 'DEL') {
-        displayText = displayText.slice(0, -1);
-        return;
-    }
-
-    if (operator == 'ANS') {
-        try {
-            if (displayText == '' && oldText) {
-                displayText += oldText;
-                return;
-            }
-
-            if (displayText == '') {
-                displayText = '0';
-            }
-
-            oldText = displayText;
-            displayText = displayText.replaceAll('^', '**');
-            displayText = eval(displayText);
-            displayText = displayText.toString();
-        } catch {
-            displayText = 'ERR';
+    switch (operator) {
+        case 'ERR': {
+            displayText = '';
+            break
         }
-        return;
-    }
 
-    // In this case the only possible operator is DVD
-    if (isBouncing == true) {
-        isBouncing = false;
-        clearInterval(bouncer);
-        return;
-    }
+        case 'DEL': {
+            displayText = displayText.slice(0, -1);
+            break
+        }
 
-    dvdInit();
+        case 'AC': {
+            displayText = '';
+            oldText = '';
+            break
+        }
+
+        case 'DVD': {
+            if (isBouncing) {
+                isBouncing = false;
+                clearInterval(bouncer);
+                break
+            } else {
+                isBouncing = true;
+                dvdInit();
+                break
+            }
+        }
+
+        case 'ANS': {
+            try {
+                if (displayText === '') {
+                    if (oldText) {
+                        displayText = oldText;
+                    } else {
+                        displayText = '0'
+                    }
+                }
+                oldText = displayText;
+                displayText = displayText.replaceAll('^', '**');
+                displayText = eval(displayText);
+                displayText = displayText.toString();
+            } catch {
+                displayText = 'ERR';
+            }
+        }
+    }
     updateDisplay();
 }
 
@@ -147,15 +148,12 @@ const main = document.getElementById('main');
 let x_incr = 1;
 let y_incr = 1;
 let isBouncing = false;
-const dvdCounterText = document.getElementById('dvd-counter');
 let dvdStopCount = 0;
 let bouncer;
 // dvdInit() is called when the DVD button is pressed
 function dvdInit() {
     // assigns an interval to bouncer that calls frame() every 5ms
     bouncer = setInterval(frame, 5);
-    // sets isBouncing to true so that the dvd button can be used to stop the bouncing
-    isBouncing = true;
 }
 
 // handle_collision() is called everytime frame() is called to check if the dvd is colliding with the edges of the screen
@@ -179,12 +177,9 @@ function handle_collision() {
 }
 
 function frame() {
-    // if isBouncing is false, frame() will not be called, making the calculator stop bouncing
-    if (isBouncing == true) {
-        // calls handle_collision() to check if the dvd is colliding with the edges of the screen
-        handle_collision();
-        // moves the dvd by x_incr and y_incr pixels
-        main.style.top = `${main.offsetTop + y_incr}px`;
-        main.style.left = `${main.offsetLeft + x_incr}px`;
-    }
+    // calls handle_collision() to check if the dvd is colliding with the edges of the screen
+    handle_collision();
+    // moves the dvd by x_incr and y_incr pixels
+    main.style.top = `${main.offsetTop + y_incr}px`;
+    main.style.left = `${main.offsetLeft + x_incr}px`;
 }
