@@ -39,14 +39,14 @@ body {
     background: var(--bg-clr);
 }
 
-#mainheader {
+#main-header {
     height: 1rem;
     width: 100%;
     text-align: center;
     background: var(--bg-clr);
 }
 
-#mainheader:hover {
+#main-header:hover {
     cursor: pointer;
 }
 

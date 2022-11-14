@@ -13,14 +13,18 @@ setInterval(function () {
 
 // adds a blinking underscore to the end of displayText
 setInterval(function () {
+    // if displayText ends with an underscore, remove it
     if (displayText.endsWith("_")) {
         displayText = displayText.slice(0, -1);
+        // otherwise, add an underscore to the end of displayText
     } else {
         displayText += "_";
     }
     updateDisplay();
+    // every half second
 }, 500);
 
+// checks if displayText contains a blinking underscore and removes it
 function removeUnderScore() {
     if (displayText.endsWith("_")) {
         displayText = displayText.slice(0, -1);
@@ -28,11 +32,14 @@ function removeUnderScore() {
     updateDisplay();
 }
 
+// updates the calculator display by setting the innerText of the different elements
+// that makes up the calculator display to the appropriate values that change within other functions
 function updateDisplay() {
     elemScreenText.innerText = displayText;
     elemOldText.innerText = oldText;
 }
 
+// gets called when you press a number button, parameter is the value of the button you pressed 
 function buttonClick(input) {
     // If displayText is ERR and another input is detected
     // clear displayText and then add the input onto the now empty string
@@ -41,13 +48,13 @@ function buttonClick(input) {
         displayText = "";
         displayText += input;
         updateDisplay();
-    }
-
-    else {
+        // otherwise, add the input onto the end of displayText
+    } else {
         displayText += input;
         updateDisplay();
     }
 }
+
 
 function functionClick(operator) {
     if (operator == 'AC') {
@@ -108,17 +115,11 @@ function functionClick(operator) {
     }
 }
 
-//Make the DIV element draggagle:
+//Make the calculator draggagle
 dragElement(document.getElementById("main"));
 function dragElement(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(element.id + "header")) {
-        // if present, the header is where you move the DIV from
-        document.getElementById(element.id + "header").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV
-        element.onmousedown = dragMouseDown;
-    }
+    document.getElementById("main-header").onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
         e = e || window.event;
