@@ -1,150 +1,150 @@
 :root {
-    --fr-clr: #ebebeb;
-    --bg-clr: white;
-    --bg-clr-alt: rgb(215, 215, 215);
-    --gradient: linear-gradient(90deg, #ee6352, purple, #ee6352);
-    --font-m: 2rem;
+  --fr-clr: #ebebeb;
+  --bg-clr: white;
+  --bg-clr-alt: rgb(215, 215, 215);
+  --gradient: linear-gradient(90deg, #ee6352, purple, #ee6352);
+  --font-m: 2rem;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    font-family: basic-sans, sans-serif;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: basic-sans, sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    background-image: var(--gradient);
-    animation: background-gradient 15s 2 alternate;
-    background-size: 400%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-image: var(--gradient);
+  animation: background-gradient 15s 2 alternate;
+  background-size: 400%;
 }
 
 .main {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    outline: var(--fr-clr) 0.1rem solid;
-    width: 30%;
-    height: 60vh;
-    background: var(--bg-clr);
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  outline: var(--fr-clr) 0.1rem solid;
+  width: 30%;
+  height: 60vh;
+  background: var(--bg-clr);
 }
 
-#main-header {
-    height: 1rem;
-    width: 100%;
-    text-align: center;
-    background: var(--bg-clr);
+#mainheader {
+  height: 1rem;
+  width: 100%;
+  text-align: center;
+  background: var(--bg-clr);
 }
 
-#main-header:hover {
-    cursor: pointer;
+#mainheader:hover {
+  cursor: pointer;
 }
 
 .title-bg {
-    background: var(--bg-clr);
-    width: 100%;
-    height: 8vh;
+  background: var(--bg-clr);
+  width: 100%;
+  height: 8vh;
 }
 
 .title {
-    background: var(--bg-clr);
-    text-align: justify;
-    font-size: 4.3vw;
-    text-transform: uppercase;
-    font-style: italic;
-    font-weight: 900;
-    text-align: center;
+  background: var(--bg-clr);
+  text-align: justify;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: 900;
+  text-align: center;
 
-    /* Text Gradient */
-    animation: background-gradient 15s 2 alternate;
-    background-size: 400%;
-    background-image: var(--gradient);
-    background-clip: text;
-    color: transparent;
-    /* Chromium Support */
-    -webkit-background-clip: text;
+  /* Text Gradient */
+  animation: background-gradient 15s 2 alternate;
+  background-size: 400%;
+  background-image: var(--gradient);
+  background-clip: text;
+  color: transparent;
+  /* Chromium Support */
+  -webkit-background-clip: text;
 }
 
 @keyframes background-gradient {
-    0% {
-        background-position: left;
-    }
+  0% {
+    background-position: left;
+  }
 
-    100% {
-        background-position: right;
-    }
+  100% {
+    background-position: right;
+  }
 }
 
 .calc {
-    display: grid;
-    height: 100%;
-    grid-template-rows: 10vh 1fr;
-    gap: 2rem;
+  display: grid;
+  height: 100%;
+  grid-template-rows: 10vh 1fr;
+  gap: 2rem;
 }
 
 .screen {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    width: calc(100%-2rem);
-    height: 100%;
-    background: var(--bg-clr-alt);
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  width: calc(100%-2rem);
+  height: 100%;
+  background: var(--bg-clr-alt);
+  overflow: hidden;
 }
 
 .screen-text {
-    font-family: monospace;
-    font-size: var(--font-m);
-    text-align: left;
+  font-family: monospace;
+  font-size: var(--font-m);
+  text-align: left;
 }
 
 #old-screen {
-    filter: opacity(0.4);
-    font-size: calc(var(--font-m) - 0.8rem);
+  filter: opacity(0.4);
+  font-size: calc(var(--font-m) - 0.8rem);
 }
 
 .button-grid {
-    display: grid;
-    margin: 1rem;
-    grid-template-rows: repeat(5. 1fr);
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.7rem;
+  display: grid;
+  margin: 1rem;
+  grid-template-rows: repeat(5 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.7rem;
 }
 
 .button {
-    font-family: monospace;
-    border: none;
-    font-size: 1.2rem;
-    font-weight: 900;
-    outline: 1px solid black;
+  font-family: monospace;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 900;
+  outline: 1px solid black;
 
-    transition: 0.03s ease-in;
+  transition: 0.03s ease-in;
 }
 
 .button:hover {
-    filter: brightness(1);
-    background: rgba(128, 128, 128, 0.0053);
+  filter: brightness(1);
+  background: rgba(128, 128, 128, 0.0053);
 }
 
 .button:active {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
