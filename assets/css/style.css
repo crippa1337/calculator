@@ -69,8 +69,9 @@ body {
   animation: background-gradient 15s 2 alternate;
   background-size: 400%;
   background-image: var(--gradient);
-  background-clip: text;
   color: transparent;
+  /* May be deprecated */
+  background-clip: text;
   /* Chromium Support */
   -webkit-background-clip: text;
 }
@@ -96,7 +97,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  width: calc(100%-2rem);
+  width: calc(100% - 2rem);
   height: 100%;
   background: var(--bg-clr-alt);
   overflow: hidden;
@@ -116,7 +117,7 @@ body {
 .button-grid {
   display: grid;
   margin: 1rem;
-  grid-template-rows: repeat(5 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
   gap: 0.7rem;
 }
