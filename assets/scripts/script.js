@@ -5,6 +5,7 @@ let displayText = '';
 let oldText = '';
 
 const titles = ['CALCULATOR', 'KALKULATOR', 'KALCULATOR', 'CALKULATOR'];
+// every 10 seconds, get a random number between 0 and 3 and set the title to the value at that index in the titles array
 setInterval(() => {
     random = Math.floor(Math.random() * titles.length);
     elemTitle.innerText = titles[random];
@@ -49,30 +50,29 @@ function buttonClick(input) {
         updateDisplay();
         return;
     }
+    // otherwise, add input at the end of displayText
     displayText += input;
     updateDisplay();
 }
 
-
+// called when any of the functional buttons are pressed, parameter is the button you pressed
 function functionClick(operator) {
+    // always check and remove the blinking underscore
     removeUnderScore();
+    // switch case for all functional buttons
     switch (operator) {
-        case 'ERR': {
-            displayText = '';
-            break
-        }
-
+        // del buttons slices the last index of displayText
         case 'DEL': {
             displayText = displayText.slice(0, -1);
             break
         }
-
+        // clear button sets displayText to an empty string
         case 'AC': {
             displayText = '';
             oldText = '';
             break
         }
-
+        // dvd button calls dvdInit() if isBouncing is false, otherwise it clears the bouncing interval and sets isBouncing to false
         case 'DVD': {
             if (isBouncing) {
                 isBouncing = false;
@@ -84,7 +84,8 @@ function functionClick(operator) {
                 break
             }
         }
-
+        // answer button sets displayText to oldText, replaces all ^ with ** for power of and then it evals the string
+        // if an error is caught in the try/catch, it just sets displayText to ERR
         case 'ANS': {
             try {
                 if (displayText === '') {
@@ -114,6 +115,7 @@ function dragElement(element) {
 
     function dragMouseDown(e) {
         e = e || window.event;
+        // disables the default dragging behaviour, i.e, disables the ability to highlight the burgericon
         e.preventDefault();
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
@@ -172,6 +174,7 @@ function handle_collision() {
     // if the dvd is colliding with the top or bottom edge of the screen, invert y_incr
     if (top <= 0 || top + main_height >= win_height) {
         y_incr = ~y_incr + 1;
+        // ~ is the bitwise NOT operator, it inverts the bits of a number
     }
 }
 
